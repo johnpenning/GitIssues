@@ -27,6 +27,20 @@ struct Issue: Codable {
         case updatedDate = "updated_at"
         case closedDate = "closed_at"
     }
+
+    static func fetch() -> [Issue]? {
+        let issuesApiUrl = URL(string: "https://api.github.com/repos/freshOS/Stevia/issues?state=all&sort=updated")!
+        do {
+            let data = try Data(contentsOf: issuesApiUrl)
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            let issues = try decoder.decode([Issue].self, from: data)
+            return issues
+        } catch {
+            print("error: \(error)")
+            return nil
+        }
+    }
 }
 
 struct User: Codable {

@@ -11,7 +11,10 @@ class IssuesViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let issues = Issue.fetch()
+
+        print("issues: \(issues)")
     }
 
 
