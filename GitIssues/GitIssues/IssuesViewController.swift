@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  IssuesViewController.swift
 //  GitIssues
 //
 //  Created by John Penning on 12/3/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class IssuesViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
