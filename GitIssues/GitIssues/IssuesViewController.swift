@@ -47,9 +47,20 @@ class IssuesViewController: UITableViewController {
 
         let issue = issues[indexPath.row]
         cell.textLabel?.text = issue.title
-        cell.detailTextLabel?.text = "blah"
+        cell.detailTextLabel?.text = detailLabel(for: issue)
 
         return cell
+    }
+
+    func detailLabel(for issue: Issue) -> String {
+        switch issue.state {
+        case .open:
+            return "#\(issue.number) opened on \(issue.openedDate) by \(issue.user.login)"
+        case .closed:
+            var label = "#\(issue.number) by \(issue.user.login) was closed"
+            label += (issue.closedDate != nil) ? "on \(issue.closedDate!)" : ""
+            return label
+        }
     }
 }
 
