@@ -9,14 +9,47 @@ import UIKit
 
 class IssuesViewController: UITableViewController {
 
+    var issues: [Issue]?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let issues = Issue.fetch()
+
+        fetchIssueData()
 
         print("issues: \(issues)")
     }
 
+    func fetchIssueData() {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            self?.issues = Issue.fetch()
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
+    }
 
+    // UITableViewDataSource
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return issues?.count ?? 0
+    }
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let issues = issues else {
+            return UITableViewCell()
+        }
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Issue", for: indexPath)
+
+        let issue = issues[indexPath.row]
+        cell.textLabel?.text = issue.title
+        cell.detailTextLabel?.text = "blah"
+
+        return cell
+    }
 }
 
