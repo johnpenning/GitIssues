@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260D6CBC275AE1D900ECF9A5 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260D6CBB275AE1D900ECF9A5 /* Comments.swift */; };
+		260D6CBE275AE27D00ECF9A5 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260D6CBD275AE27D00ECF9A5 /* CommentCell.swift */; };
+		260D6CC0275AE28C00ECF9A5 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260D6CBF275AE28C00ECF9A5 /* CommentsViewController.swift */; };
 		264B8E63275ADB38001F04C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264B8E62275ADB38001F04C3 /* AppDelegate.swift */; };
 		264B8E65275ADB38001F04C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264B8E64275ADB38001F04C3 /* SceneDelegate.swift */; };
 		264B8E67275ADB38001F04C3 /* IssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264B8E66275ADB38001F04C3 /* IssuesViewController.swift */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		260D6CBB275AE1D900ECF9A5 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		260D6CBD275AE27D00ECF9A5 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		260D6CBF275AE28C00ECF9A5 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		264B8E5F275ADB38001F04C3 /* GitIssues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitIssues.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		264B8E62275ADB38001F04C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		264B8E64275ADB38001F04C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +72,9 @@
 				264B8E6D275ADB39001F04C3 /* LaunchScreen.storyboard */,
 				264B8E70275ADB39001F04C3 /* Info.plist */,
 				264B8E76275ADB87001F04C3 /* Issues.swift */,
+				260D6CBB275AE1D900ECF9A5 /* Comments.swift */,
+				260D6CBD275AE27D00ECF9A5 /* CommentCell.swift */,
+				260D6CBF275AE28C00ECF9A5 /* CommentsViewController.swift */,
 			);
 			path = GitIssues;
 			sourceTree = "<group>";
@@ -142,9 +151,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				264B8E67275ADB38001F04C3 /* IssuesViewController.swift in Sources */,
+				260D6CBC275AE1D900ECF9A5 /* Comments.swift in Sources */,
+				260D6CC0275AE28C00ECF9A5 /* CommentsViewController.swift in Sources */,
 				264B8E63275ADB38001F04C3 /* AppDelegate.swift in Sources */,
 				264B8E65275ADB38001F04C3 /* SceneDelegate.swift in Sources */,
 				264B8E77275ADB87001F04C3 /* Issues.swift in Sources */,
+				260D6CBE275AE27D00ECF9A5 /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

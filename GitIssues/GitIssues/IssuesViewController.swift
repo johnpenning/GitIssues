@@ -15,8 +15,6 @@ class IssuesViewController: UITableViewController {
         super.viewDidLoad()
 
         fetchIssueData()
-
-        print("issues: \(issues)")
     }
 
     func fetchIssueData() {
