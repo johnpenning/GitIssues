@@ -58,7 +58,7 @@ class IssuesViewController: UITableViewController {
             return "#\(issue.number) opened on \(issue.openedDate) by \(issue.user.login)"
         case .closed:
             var label = "#\(issue.number) by \(issue.user.login) was closed"
-            label += (issue.closedDate != nil) ? "on \(issue.closedDate!)" : ""
+            label += (issue.closedDate != nil) ? " on \(issue.closedDate!)" : ""
             return label
         }
     }
