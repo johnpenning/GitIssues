@@ -22,24 +22,26 @@ struct Comment: Codable {
         let commentsApiUrl = URL(string: "https://api.github.com/repos/freshOS/Stevia/issues/\(issue)/comments")!
 
         URLSession.shared.dataTask(with: commentsApiUrl) { data, response, error in
+            var comments: [Comment]?
+            defer {
+                DispatchQueue.main.async {
+                    completion(comments)
+                }
+            }
+
             if let error = error {
                 print("error fetching comments: \(error.localizedDescription)")
-                completion(nil)
                 return
             }
 
             guard let data = data else {
-                completion(nil)
                 return
             }
 
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             do {
-                let comments = try decoder.decode([Comment].self, from: data)
-                DispatchQueue.main.async {
-                    completion(comments)
-                }
+                comments = try decoder.decode([Comment].self, from: data)
             } catch {
                 print("error decoding comments: \(error.localizedDescription)")
             }

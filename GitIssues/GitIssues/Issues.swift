@@ -33,24 +33,25 @@ struct Issue: Codable {
         let issuesApiUrl = URL(string: "https://api.github.com/repos/freshOS/Stevia/issues?state=all&sort=updated")!
 
         URLSession.shared.dataTask(with: issuesApiUrl) { data, response, error in
+            var issues: [Issue]?
+            defer {
+                DispatchQueue.main.async {
+                    completion(issues)
+                }
+            }
             if let error = error {
                 print("error fetching issues: \(error.localizedDescription)")
-                completion(nil)
                 return
             }
 
             guard let data = data else {
-                completion(nil)
                 return
             }
 
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             do {
-                let issues = try decoder.decode([Issue].self, from: data)
-                DispatchQueue.main.async {
-                    completion(issues)
-                }
+                issues = try decoder.decode([Issue].self, from: data)
             } catch {
                 print("error decoding issues: \(error.localizedDescription)")
             }
