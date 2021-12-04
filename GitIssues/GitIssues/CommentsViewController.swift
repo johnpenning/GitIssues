@@ -11,19 +11,44 @@ import UIKit
 class CommentsViewController: UITableViewController {
 
     var issue: Issue?
+    var comments: [Comment]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let issue = issue, issue.numComments > 0 {
+            fetchCommentData(for: issue)
+        }
+    }
+
+    func fetchCommentData(for issue: Issue) {
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            self?.comments = Comment.fetch(for: issue.number)
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
     }
 
     // UITableViewDataSource
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (issue?.body != nil) ? 1 : 0
+        switch section {
+        case 0:
+            return (issue?.body != nil) ? 1 : 0
+        case 1:
+            return comments?.count ?? 0
+        default:
+            return 0
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        guard let comments = comments else {
+            return 1
+        }
+
+        return comments.count > 0 ? 2 : 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,8 +57,20 @@ class CommentsViewController: UITableViewController {
             return UITableViewCell()
         }
 
-        cell.header.text = "issue body"
-        cell.body.text = issue.body
+        switch indexPath.section {
+        case 0:
+            cell.header.text = "issue body"
+            cell.body.text = issue.body
+        case 1:
+            guard let comments = comments else {
+                return UITableViewCell()
+            }
+
+            cell.header.text = "comment"
+            cell.body.text = comments[indexPath.row].body
+        default:
+            return UITableViewCell()
+        }
 
         return cell
     }

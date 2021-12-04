@@ -19,7 +19,7 @@ struct Comment: Codable {
     }
 
     static func fetch(for issue: Int) -> [Comment]? {
-        let commentsApiUrl = URL(string: "https://api.github.com/repos/freshOS/Stevia/\(issue)/comments")!
+        let commentsApiUrl = URL(string: "https://api.github.com/repos/freshOS/Stevia/issues/\(issue)/comments")!
         do {
             let data = try Data(contentsOf: commentsApiUrl)
             let decoder = JSONDecoder()
