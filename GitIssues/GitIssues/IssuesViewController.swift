@@ -53,10 +53,10 @@ class IssuesViewController: UITableViewController {
     func detailLabel(for issue: Issue) -> String {
         switch issue.state {
         case .open:
-            return "#\(issue.number) opened on \(issue.openedDate) by \(issue.user.login)"
+            return "#\(issue.number) opened on \(issue.openedDate.formatted()) by \(issue.user.login)"
         case .closed:
             var label = "#\(issue.number) by \(issue.user.login) was closed"
-            label += (issue.closedDate != nil) ? " on \(issue.closedDate!)" : ""
+            label += (issue.closedDate != nil) ? " on \(issue.closedDate!.formatted())" : ""
             return label
         }
     }
