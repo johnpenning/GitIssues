@@ -29,18 +29,32 @@ struct Issue: Codable {
         case closedDate = "closed_at"
     }
 
-    static func fetch() -> [Issue]? {
+    static func fetch(completion: @escaping ([Issue]?) -> Void) {
         let issuesApiUrl = URL(string: "https://api.github.com/repos/freshOS/Stevia/issues?state=all&sort=updated")!
-        do {
-            let data = try Data(contentsOf: issuesApiUrl)
+
+        URLSession.shared.dataTask(with: issuesApiUrl) { data, response, error in
+            if let error = error {
+                print("error fetching issues: \(error.localizedDescription)")
+                completion(nil)
+                return
+            }
+
+            guard let data = data else {
+                completion(nil)
+                return
+            }
+
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
-            let issues = try decoder.decode([Issue].self, from: data)
-            return issues
-        } catch {
-            print("error fetching issues: \(error)")
-            return nil
-        }
+            do {
+                let issues = try decoder.decode([Issue].self, from: data)
+                DispatchQueue.main.async {
+                    completion(issues)
+                }
+            } catch {
+                print("error decoding issues: \(error.localizedDescription)")
+            }
+        }.resume()
     }
 }
 

@@ -18,17 +18,31 @@ struct Comment: Codable {
         case date = "created_at"
     }
 
-    static func fetch(for issue: Int) -> [Comment]? {
+    static func fetch(for issue: Int, completion: @escaping ([Comment]?) -> Void) {
         let commentsApiUrl = URL(string: "https://api.github.com/repos/freshOS/Stevia/issues/\(issue)/comments")!
-        do {
-            let data = try Data(contentsOf: commentsApiUrl)
+
+        URLSession.shared.dataTask(with: commentsApiUrl) { data, response, error in
+            if let error = error {
+                print("error fetching comments: \(error.localizedDescription)")
+                completion(nil)
+                return
+            }
+
+            guard let data = data else {
+                completion(nil)
+                return
+            }
+
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
-            let comments = try decoder.decode([Comment].self, from: data)
-            return comments
-        } catch {
-            print("error fetching comments: \(error)")
-            return nil
-        }
+            do {
+                let comments = try decoder.decode([Comment].self, from: data)
+                DispatchQueue.main.async {
+                    completion(comments)
+                }
+            } catch {
+                print("error decoding comments: \(error.localizedDescription)")
+            }
+        }.resume()
     }
 }

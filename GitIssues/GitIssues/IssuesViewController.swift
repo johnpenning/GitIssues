@@ -18,11 +18,9 @@ class IssuesViewController: UITableViewController {
     }
 
     func fetchIssueData() {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.issues = Issue.fetch()
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
+        Issue.fetch { [weak self] issues in
+            self?.issues = issues
+            self?.tableView.reloadData()
         }
     }
 

@@ -22,11 +22,9 @@ class CommentsViewController: UITableViewController {
     }
 
     func fetchCommentData(for issue: Issue) {
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.comments = Comment.fetch(for: issue.number)
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
+        Comment.fetch(for: issue.number) { [weak self] comments in
+            self?.comments = comments
+            self?.tableView.reloadData()
         }
     }
 
