@@ -61,21 +61,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Comment" rowHeight="116" id="sFw-ji-E6d" customClass="CommentCell" customModule="GitIssues" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Comment" rowHeight="116" id="sFw-ji-E6d" customClass="CommentCell" customModule="GitIssues" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="116"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" tableViewCell="sFw-ji-E6d" translatesAutoresizingMaskIntoConstraints="NO" id="fWF-k4-Wea">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="sFw-ji-E6d" translatesAutoresizingMaskIntoConstraints="NO" id="fWF-k4-Wea">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Body" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="001-Fo-z6z">
-                                            <rect key="frame" x="20" y="40" width="56" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSD-4a-1Ue">
+                                            <rect key="frame" x="20" y="11" width="374" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSD-4a-1Ue">
-                                            <rect key="frame" x="20" y="11" width="56" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="001-Fo-z6z">
+                                            <rect key="frame" x="20" y="35" width="374" height="70"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -90,6 +90,15 @@
                                         <constraint firstItem="bSD-4a-1Ue" firstAttribute="top" secondItem="fWF-k4-Wea" secondAttribute="top" constant="11" id="xt1-wh-We4"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fWF-k4-Wea" secondAttribute="trailing" id="4vS-Uk-nQc"/>
+                                    <constraint firstItem="fWF-k4-Wea" firstAttribute="leading" secondItem="sFw-ji-E6d" secondAttribute="leading" id="G6Z-HO-q4h"/>
+                                    <constraint firstAttribute="bottom" secondItem="fWF-k4-Wea" secondAttribute="bottom" id="ghS-D5-D9O"/>
+                                    <constraint firstItem="fWF-k4-Wea" firstAttribute="top" secondItem="sFw-ji-E6d" secondAttribute="top" id="rhE-7e-nnv"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="body" destination="001-Fo-z6z" id="OjQ-r3-eeo"/>
                                     <outlet property="header" destination="bSD-4a-1Ue" id="ALt-kj-pVX"/>
