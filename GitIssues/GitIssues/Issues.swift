@@ -29,8 +29,8 @@ struct Issue: Codable {
         case closedDate = "closed_at"
     }
 
-    static func fetch(completion: @escaping ([Issue]?) -> Void) {
-        let issuesApiUrl = URL(string: "https://api.github.com/repos/freshOS/Stevia/issues?state=all&sort=updated")!
+    static func fetch(page: Int, completion: @escaping ([Issue]?) -> Void) {
+        let issuesApiUrl = URL(string: "https://api.github.com/repos/freshOS/Stevia/issues?state=all&sort=updated&page=\(page)")!
 
         URLSession.shared.dataTask(with: issuesApiUrl) { data, response, error in
             var issues: [Issue]?
