@@ -55,19 +55,45 @@
         <!--Comments View Controller-->
         <scene sceneID="Hze-jP-qxZ">
             <objects>
-                <tableViewController id="95T-ot-aoX" customClass="CommentsViewController" customModule="GitIssues" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Comments" id="95T-ot-aoX" customClass="CommentsViewController" customModule="GitIssues" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="LM2-r0-uNB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="sFw-ji-E6d" customClass="CommentCell" customModule="GitIssues" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Comment" rowHeight="116" id="sFw-ji-E6d" customClass="CommentCell" customModule="GitIssues" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="116"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sFw-ji-E6d" id="fWF-k4-Wea">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" tableViewCell="sFw-ji-E6d" translatesAutoresizingMaskIntoConstraints="NO" id="fWF-k4-Wea">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="116"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Body" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="001-Fo-z6z">
+                                            <rect key="frame" x="20" y="40" width="56" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSD-4a-1Ue">
+                                            <rect key="frame" x="20" y="11" width="56" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="001-Fo-z6z" secondAttribute="trailing" constant="20" id="1Ux-QK-EKN"/>
+                                        <constraint firstItem="001-Fo-z6z" firstAttribute="top" secondItem="bSD-4a-1Ue" secondAttribute="bottom" constant="8" symbolic="YES" id="7c0-Lc-q5l"/>
+                                        <constraint firstItem="001-Fo-z6z" firstAttribute="leading" secondItem="fWF-k4-Wea" secondAttribute="leading" constant="20" symbolic="YES" id="VvN-82-Tgb"/>
+                                        <constraint firstAttribute="bottom" secondItem="001-Fo-z6z" secondAttribute="bottom" constant="11" id="cW5-MF-hhX"/>
+                                        <constraint firstAttribute="trailing" secondItem="bSD-4a-1Ue" secondAttribute="trailing" constant="20" id="dgJ-qJ-6t0"/>
+                                        <constraint firstItem="bSD-4a-1Ue" firstAttribute="leading" secondItem="fWF-k4-Wea" secondAttribute="leading" constant="20" symbolic="YES" id="pcA-1L-FwZ"/>
+                                        <constraint firstItem="bSD-4a-1Ue" firstAttribute="top" secondItem="fWF-k4-Wea" secondAttribute="top" constant="11" id="xt1-wh-We4"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="body" destination="001-Fo-z6z" id="OjQ-r3-eeo"/>
+                                    <outlet property="header" destination="bSD-4a-1Ue" id="ALt-kj-pVX"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -78,7 +104,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z5d-QR-o70" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2426" y="135"/>
+            <point key="canvasLocation" x="2424.6376811594205" y="134.59821428571428"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="e5F-1H-Xzs">

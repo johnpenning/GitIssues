@@ -18,9 +18,10 @@ struct Issue: Codable {
     let openedDate: Date
     let updatedDate: Date
     let closedDate: Date?
+    let body: String?
 
     private enum CodingKeys: String, CodingKey {
-        case url, number, title, user, state
+        case url, number, title, user, state, body
         case numComments = "comments"
         case commentsUrl = "comments_url"
         case openedDate = "created_at"
@@ -37,7 +38,7 @@ struct Issue: Codable {
             let issues = try decoder.decode([Issue].self, from: data)
             return issues
         } catch {
-            print("error: \(error)")
+            print("error fetching issues: \(error)")
             return nil
         }
     }

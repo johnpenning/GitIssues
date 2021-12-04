@@ -60,5 +60,17 @@ class IssuesViewController: UITableViewController {
             return label
         }
     }
+
+    // UITableViewDelegate
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let issues = issues else {
+            return
+        }
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Comments") as? CommentsViewController {
+            vc.issue = issues[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
