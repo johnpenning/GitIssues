@@ -14,6 +14,14 @@ class IssuesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Add pull-to-refresh
+        tableView.refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(refreshIssues), for: .valueChanged)
+
+        fetchIssueData()
+    }
+
+    @objc func refreshIssues() {
         fetchIssueData()
     }
 
@@ -21,6 +29,7 @@ class IssuesViewController: UITableViewController {
         Issue.fetch { [weak self] issues in
             self?.issues = issues
             self?.tableView.reloadData()
+            self?.refreshControl?.endRefreshing()
         }
     }
 

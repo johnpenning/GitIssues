@@ -16,7 +16,17 @@ class CommentsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Add pull-to-refresh
+        tableView.refreshControl = UIRefreshControl()
+        refreshControl?.addTarget(self, action: #selector(refreshComments), for: .valueChanged)
+
         if let issue = issue, issue.numComments > 0 {
+            fetchCommentData(for: issue)
+        }
+    }
+
+    @objc func refreshComments() {
+        if let issue = issue {
             fetchCommentData(for: issue)
         }
     }
@@ -25,6 +35,7 @@ class CommentsViewController: UITableViewController {
         Comment.fetch(for: issue.number) { [weak self] comments in
             self?.comments = comments
             self?.tableView.reloadData()
+            self?.refreshControl?.endRefreshing()
         }
     }
 
