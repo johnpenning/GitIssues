@@ -59,15 +59,16 @@ class CommentsViewController: UITableViewController {
 
         switch indexPath.section {
         case 0:
-            cell.header.text = "issue body"
+            cell.header.text = "\(issue.user.login) commented on \(issue.openedDate)"
             cell.body.text = issue.body
         case 1:
             guard let comments = comments else {
                 return UITableViewCell()
             }
 
-            cell.header.text = "comment"
-            cell.body.text = comments[indexPath.row].body
+            let comment = comments[indexPath.row]
+            cell.header.text = "\(comment.user.login) commented on \(comment.date)"
+            cell.body.text = comment.body
         default:
             return UITableViewCell()
         }
